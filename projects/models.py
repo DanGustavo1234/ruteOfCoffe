@@ -62,7 +62,7 @@ class Emprendimiento(models.Model):
 #---------------------------------------------------------------------------------------------------------------------------------------
 class Emprendedor(Persona):
     # crear una relacion de muchos a muchos 
-    emprendimientos=models.OneToOneField (Emprendimiento,blank=True,on_delete=models.CASCADE)
+    emprendimientos=models.OneToOneField (Emprendimiento,blank=True,on_delete=models.CASCADE,default=1)
 
 
     class Meta:
