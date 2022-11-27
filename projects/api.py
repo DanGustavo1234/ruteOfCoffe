@@ -1,5 +1,5 @@
 from rest_framework import viewsets,permissions
-from .serializers import EmprendimientoSerializers,EmprendedorSerializers,ScoreSerializers,Video_imagenSerializers,ProductoSerializers,ReservaSerializers,CompraSerializers
+from .serializers import EmprendimientoSerializers,CategoriaSerializers,EmprendedorSerializers,ScoreSerializers,Video_imagenSerializers,ProductoSerializers,ReservaSerializers,CompraSerializers
 from .models import Emprendimiento
 from .models import Emprendedor
 from .models import Score
@@ -7,6 +7,7 @@ from .models import Video_imagen
 from .models import Producto
 from .models import Reserva
 from .models import Compra
+from .models import Categoria
 
 
 class EmprendimientoViewSet(viewsets.ModelViewSet):
@@ -57,5 +58,12 @@ class CompraViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = CompraSerializers
+
+class CategoriaViewSet(viewsets.ModelViewSet):
+    queryset = Categoria.objects.all()
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = CategoriaSerializers
 
     

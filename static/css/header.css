@@ -1,0 +1,12 @@
+.collapse{
+    background-image: -moz-linear-gradient(0deg, #920048 0%, #D30468 100%);
+    background-image: -webkit-linear-gradient(0deg, #920048 0%, rgb(211, 4, 104) 100%);
+    background-image: -ms-linear-gradient(0deg, #920048 0%, #D30468 100%);
+    border-radius: 20px;
+    height: 45px;
+  
+}
+.nav-link{
+    color: #fff;
+    
+}

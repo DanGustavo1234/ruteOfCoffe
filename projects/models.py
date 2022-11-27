@@ -28,17 +28,26 @@ class Persona(models.Model):
 #--------------------------------------------------------------------------------------------------------------------------------------
 class Cliente(Persona):
     pass
+
+class Categoria(models.Model):
+    TIPO = [
+        ('Hospedaje','Hospedaje'),
+        ('Gastronomia','Gastronomia'),
+        ('Hosterias','Spot Turistico'),
+        ('Vendedores','Productor - Vendedor'),
+    ]
+    nombre = models.CharField(verbose_name="Nombre de la Categoría", max_length=100,choices=TIPO,null=True, blank=True)
+    foto= models.ImageField(upload_to = "static\img\cat", verbose_name = "Foto de la Categoría", null = True, blank = True)
+
+    def __str__(self):
+        return self.nombre
+
+
 #---------------------------------------------------------------------------------------------------------------------------------------
 class Emprendimiento(models.Model):
 
-    TIPO = [
-        ('hospedaje', 'Hospedaje'),
-        ('gastronomia', 'Gastronomia'),
-        ('spots', 'Spot Turistico'),
-        ('productores', 'Productor - Vendedor'),
-    ]
-
-    tipo_emprendimiento = models.CharField(verbose_name="Tipo de Emprendimiento", max_length=200, choices=TIPO)
+   
+    tipo_emprendimiento =models.ForeignKey(Categoria,on_delete=models.CASCADE)
     nombre_emprendimiento = models.CharField(verbose_name="Nombre del Emprendimiento", max_length=200)
     direccion = models.CharField(verbose_name="Dirección", max_length=200)
     telefono = models.CharField(verbose_name="Teléfono", max_length=13)
@@ -49,6 +58,10 @@ class Emprendimiento(models.Model):
     latitud = models.CharField(verbose_name="Latitud", max_length=20)
     foto = models.ImageField(upload_to = "fotos_local", verbose_name = "Logo", null = True, blank = True)
     video=models.URLField(verbose_name="video promocional", null=True, blank=True)
+    instagram=models.URLField(verbose_name="Instagram", null=True, blank=True)
+    facebook=models.URLField(verbose_name="Facebook", null=True, blank=True)
+    twitter=models.URLField(verbose_name="Twitter", null=True, blank=True)
+   
 
 
     class Meta:
@@ -56,7 +69,7 @@ class Emprendimiento(models.Model):
         verbose_name_plural = "Emprendimientos"
 
     def __str__(self):
-        return self.tipo_emprendimiento + " - " + self.nombre_emprendimiento
+        return  self.nombre_emprendimiento
 
 
 #---------------------------------------------------------------------------------------------------------------------------------------
@@ -95,8 +108,8 @@ class Score(models.Model):
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 class Video_imagen(models.Model):
-    video=models.URLField(verbose_name="video promocional", null=True, blank=True)
-    foto = models.ImageField(upload_to = "fotos_local", verbose_name = "Logo", null = True, blank = True)
+    iid=models.IntegerField(default=0, null=True, blank=True)
+    foto = models.ImageField(upload_to = "static/img/fotosSlider", verbose_name = "Logo", null = True, blank = True)
     emprendimiento=models.ForeignKey(Emprendimiento, on_delete=models.CASCADE)
 
     class Meta:
@@ -104,7 +117,7 @@ class Video_imagen(models.Model):
         verbose_name_plural = "Videos e Imagenes"
 
     def __str__(self):
-         return self.nombre_emprendimiento + " - " + self.video + " - " + self.foto
+         return self.emprendimiento.nombre_emprendimiento 
 
     pass
 

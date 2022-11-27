@@ -1,0 +1,34 @@
+
+
+
+
+{%extends "comun/base.html"%} 
+
+
+{% block content %}
+<!-- Aqui va el contenido de la pagina -->
+{% load static %}
+
+
+{%for emprende in emprendimiento%}
+<section>
+  <h1 class="alert alert-danger text-center">Empredimiento: {{emprendimiento.nombre_emprendimiento}}</h1>
+  <br>
+  <div class="card-group">
+    
+    <div class="card">
+      <img src="https://lh3.googleusercontent.com/jUoaTIlBn5ibfQcND2n5OMD6Z7xoqNj-ShHlFR6QuLffLXD5pS8V2eNg1rGlrsRrnDkoQ28O8UHzqzBQKAGY4l1CS2NQSq2SkRScK6FOjl82jppyohK-" class="card-img-top" >
+      <div class="card-body">
+        <h5 class="card-title">Emprendimiento:{{emprendimiento.nombre_emprendimiento}}</h5>
+        <p class="card-text">Descripcion: {{emprendimiento.descripcion}}</p>
+        <p class="card-text"><small class="text-muted"></small></p>
+      </div>
+    </div>
+  
+  </div>
+
+    <br>
+ 
+</section>
+{% endfor %}
+{% endblock %}

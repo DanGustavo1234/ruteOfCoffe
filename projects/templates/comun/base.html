@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Aqui va el enlace del header -->
+<!-- django me permite llamar otros archivos -->
+
+{% include "comun/estilos.html" %} 
+
+
+<body>
+        <!-- Aqui vamos a crear todo el ambiente de trabajo de nuestro proyecto -->
+        <!-- Colocamos Bootstrap -->
+    
+      
+
+        <div class="container">
+
+            {%include "comun/header.html"%}
+            {%block content%} 
+             
+             {% endblock %}
+            {%include "comun/footer.html"%}
+            <!-- Vamos a dejar marcado el area de trabajo para la pagina Web -->
+             
+            
+           
+     
+
+        </div>
+    </body>
+</html>

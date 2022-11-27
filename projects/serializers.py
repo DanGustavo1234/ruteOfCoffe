@@ -6,6 +6,7 @@ from .models import Video_imagen
 from .models import Producto
 from .models import Reserva
 from .models import Compra
+from .models import Categoria
 
 
 
@@ -50,3 +51,9 @@ class CompraSerializers(serializers.ModelSerializer):
         model = Compra
         fields = ['id','fecha','fecha_creacion','fecha_modificacion','producto','emprendimiento']
         read_only_fields = ('created_at', )
+
+class CategoriaSerializers(serializers.ModelSerializer):
+    class Meta:
+        model=Categoria
+        fields=['nombre']
+        read_only_fields=('created_at',)

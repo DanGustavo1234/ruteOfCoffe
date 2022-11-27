@@ -15,8 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from projects import views
+from django.shortcuts import render
+from django.views.generic import RedirectView
+from django.conf.urls.static import static
+from django.conf import settings
+
+
+
 
 urlpatterns = [
+    path('', views.index, name="index"),
+    path('emprendimiento/listado', views.lista_emprendimiento, name="listado de emprendimientos"),
+    path('emprendimiento/<int:id>', views.ver_emprendimiento, name="ver emprendimiento"),
+    path('prueba/', views.prueba, name="prueba"),
     path('admin/', admin.site.urls),
-    path('',include('projects.urls'))
+    path('',include('projects.urls')),
+ 
+    
 ]
+
+# 
+
+urlpatterns+=static((settings.STATIC_URL), document_root=settings.STATIC_ROOT)
+
+
