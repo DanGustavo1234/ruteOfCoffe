@@ -26,8 +26,10 @@ from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('emprendimiento/listado', views.lista_emprendimiento, name="listado de emprendimientos"),
+    path('emprendimiento/lista_empren.html', views.lista_emprendimiento, name="listado de emprendimientos"),
     path('emprendimiento/<int:id>', views.ver_emprendimiento, name="ver emprendimiento"),
+    path('emprendedor/Emprendedor.html', views.ver_emprendedor, name="ver emprendedor"),
+    path('reservas/reservas.html', views.reserva, name="reservas"),
     path('prueba/', views.prueba, name="prueba"),
     path('admin/', admin.site.urls),
     path('',include('projects.urls')),

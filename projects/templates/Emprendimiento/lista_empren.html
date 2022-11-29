@@ -12,21 +12,25 @@
 <section>
   <!-- <h1 class="alert alert-danger text-center">Emprendimientos </h1> -->
   <br>
+  <div class="row">
   <div class="card-group">
     {% for emprende in emprendimientos  %}
+    {% if forloop.counter|divisibleby:"1"  %}
+    <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
     <div class="card">
-      <img src="https://lh3.googleusercontent.com/jUoaTIlBn5ibfQcND2n5OMD6Z7xoqNj-ShHlFR6QuLffLXD5pS8V2eNg1rGlrsRrnDkoQ28O8UHzqzBQKAGY4l1CS2NQSq2SkRScK6FOjl82jppyohK-" class="card-img-top" >
+      <img src="{{emprende.foto.url}}" class="card-img-top text-center"  style=" width: 250px; height: 250px; ">
       <div class="card-body">
-        <h5 class="card-title">Nombre:{{emprende.nombre_emprendimiento}}</h5>
-        <h4 >Categoria:{{emprende.tipo_emprendimiento}}</h4>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <h5 class="card-title text-center">{{emprende.nombre_emprendimiento}}</h5>
+        <!-- <h4 >Categoria:{{emprende.tipo_emprendimiento}}</h4> -->
         <p class="card-text"><small class="text-muted"></small></p>
       </div>
     </div>
+  </div>
+    {%endif%}
     {% endfor %}
 
   </div>
-
+</div>
     <br>
  
 </section>

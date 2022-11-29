@@ -1,0 +1,37 @@
+
+{%extends "comun/base.html"%} 
+
+
+{% block content %}
+<!-- Aqui va el contenido de la pagina -->
+{% load static %}
+
+<section>
+  <!-- <h1 class="alert alert-danger text-center">Emprendimientos </h1> -->
+  <br>
+  <div class="row">
+  <div class="card-group">
+    {% for reserva in reservas %}
+    {% if forloop.counter|divisibleby:"1"  %}
+    <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
+    <div class="card">
+      <img src="{{reserva.foto.url}}" class="card-img-top text-center"  style=" width: 250px; height: 250px;">
+      <div class="card-body">
+        <h5 class="card-title text-center">Cliente :{{reserva.cliente.nombre}}</h5>
+        <h5 class="card-title text-center">Producto :{{reserva.nombre_producto}}</h5>
+        <h5 class="card-title text-center">Cantidad :{{reserva.cantidad}}</h5>
+        <!-- <h4 >Categoria:{{emprende.tipo_emprendimiento}}</h4> -->
+        <p class="card-text"><small class="text-muted"></small></p>
+      </div>
+    </div>
+  </div>
+    {%endif%}
+    {% endfor %}
+
+  </div>
+</div>
+    <br>
+ 
+</section>
+
+{% endblock %}

@@ -19,15 +19,16 @@ class Persona(models.Model):
     direccion = models.CharField(verbose_name="Dirección", max_length=200)
     fecha_nacimiento = models.DateField(verbose_name="Fecha de Nacimiento")
     pais_origen = models.CharField(verbose_name="País de origen", max_length=200)
-    foto = models.ImageField(upload_to = "fotos_usuarios", verbose_name = "Foto de Perfil", null = True, blank = True)
+    foto = models.ImageField(upload_to = "static\img\emprendedores", verbose_name = "Foto de Perfil", null = True, blank = True)
 
     # metodo para presentar el objeto creado
     def __str__(self):
-        return self.cedula
+        return self.nombre
 
 #--------------------------------------------------------------------------------------------------------------------------------------
 class Cliente(Persona):
-    pass
+     def __str__(self):
+        return self.nombre
 
 class Categoria(models.Model):
     TIPO = [
@@ -56,7 +57,7 @@ class Emprendimiento(models.Model):
     horario_cierre = models.DateTimeField()
     altitud = models.CharField(verbose_name="Altitud", max_length=20)
     latitud = models.CharField(verbose_name="Latitud", max_length=20)
-    foto = models.ImageField(upload_to = "fotos_local", verbose_name = "Logo", null = True, blank = True)
+    foto = models.ImageField(upload_to = "static\img\empren", verbose_name = "Logo", null = True, blank = True)
     video=models.URLField(verbose_name="video promocional", null=True, blank=True)
     instagram=models.URLField(verbose_name="Instagram", null=True, blank=True)
     facebook=models.URLField(verbose_name="Facebook", null=True, blank=True)
@@ -83,7 +84,7 @@ class Emprendedor(Persona):
         verbose_name_plural = "Emprendedores(personas)"
 
     def __str__(self):
-        return self.nombre + " - " + nombre_emprendimiento
+        return self.nombre + " - " + self.emprendimientos.nombre_emprendimiento
 
 # ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -142,13 +143,14 @@ class Producto(models.Model):
 class Reserva(Producto):
     fecha_reserva = models.DateTimeField()
     fecha_vencimiento = models.DateTimeField()
+    foto=models.ImageField(upload_to = "static/img/fotosReserva", verbose_name = "Logo", null = True, blank = True)
     cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE)
     class Meta:
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
 
     def __str__(self):
-        return self.fecha_reserva + " - " + self.nombre_producto + self.precio + " - " + self.cliente
+        return self.nombre_producto + self.cliente.nombre
 
     pass
 

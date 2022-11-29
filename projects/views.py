@@ -14,13 +14,11 @@ from projects import views
 def index(request):
       categorias=Categoria.objects.all()
       imagenes=Video_imagen.objects.all().order_by('id')
-      print(imagenes)
-      print(categorias)
       return render(request, 'presentacion/index.html', {'categorias':categorias,'imagenes':imagenes} )
         
 
 def lista_emprendimiento(request):
-      emprendimientos=Emprendimiento.objects.all().order_by('tipo_emprendimiento')
+      emprendimientos=Emprendimiento.objects.all()
       # emprendedor=Emprendedor.objects.all()
       # # for emprendimiento in emprendimientos:
       # #       for emprendedor in emprendimientos:
@@ -33,12 +31,25 @@ def lista_emprendimiento(request):
       # print(
       #       emprendimientos
       # )
+      print(emprendimientos)
       return render(request, 'Emprendimiento/lista_empren.html', {'emprendimientos':emprendimientos} )
 
 
+
 def ver_emprendimiento(request, id):
-      emprendimiento=Emprendimiento.objects.all().filter(id=id)
-      return render(request, 'Emprendimiento/Emprendimiento.html', {'emprendimiento':emprendimiento} )
+      emprendimiento = Emprendimiento.objects.all().filter(id=id)
+      print(emprendimiento)
+      return render(request, 'Emprendimiento/Emprendimiento.html', {'emprendimiento': emprendimiento })
+
+
+def ver_emprendedor(request):
+      emprendedor=Emprendedor.objects.all()
+      return render(request, 'emprendedor/Emprendedor.html', {'emprendedor':emprendedor} )
+
+def reserva(request):
+      reservas=Reserva.objects.all()
+      return render(request, 'reservas/reservas.html', {'reservas':reservas} )
+
 
 def prueba(request): 
       return render(request, 'presentacion/prueba.html', {} )
