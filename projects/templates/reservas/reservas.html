@@ -1,37 +1,130 @@
-
-{%extends "comun/base.html"%} 
-
+{%extends "comun/base.html"%}
 
 {% block content %}
 <!-- Aqui va el contenido de la pagina -->
 {% load static %}
 
+
 <section>
   <!-- <h1 class="alert alert-danger text-center">Emprendimientos </h1> -->
-  <br>
+  <!-- Fecha_inicio=fecha+inicio,
+  tipo_emprendimiento=tipo_emprendimiento,
+  cantidad_productos=cantidad_productos,
+  nombre_producto= nombre_producto -->
+  
+  
+  
+  <br />
   <div class="row">
-  <div class="card-group">
-    {% for reserva in reservas %}
-    {% if forloop.counter|divisibleby:"1"  %}
-    <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
-    <div class="card">
-      <img src="{{reserva.foto.url}}" class="card-img-top text-center"  style=" width: 250px; height: 250px;">
-      <div class="card-body">
-        <h5 class="card-title text-center">Cliente :{{reserva.cliente.nombre}}</h5>
-        <h5 class="card-title text-center">Producto :{{reserva.nombre_producto}}</h5>
-        <h5 class="card-title text-center">Cantidad :{{reserva.cantidad}}</h5>
-        <!-- <h4 >Categoria:{{emprende.tipo_emprendimiento}}</h4> -->
-        <p class="card-text"><small class="text-muted"></small></p>
+    <div class="card-group">
+      {% for reserva in reservas %}
+       {% if forloop.counter|divisibleby:"1" %}
+      <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
+        <div class="card">
+          <img
+            src="{{reserva.foto.url}}"
+            class="card-img-top text-center"
+            style="width: 250px; height: 250px"
+          />
+          <div class="card-body">
+            <h5 class="card-title text-center">
+              Cliente :{{reserva.cliente.nombre}}
+            </h5>
+            <h5 class="card-title text-center">
+              Producto :{{reserva.nombre_producto}}
+            </h5>
+            <h5 class="card-title text-center">
+              Cantidad :{{reserva.cantidad}}
+            </h5>
+            <!-- <h4 >Categoria:{{emprende.tipo_emprendimiento}}</h4> -->
+            <p class="card-text"><small class="text-muted"></small></p>
+          </div>
+        </div>
       </div>
+      <!-- Reservas de productos -->
+      <!-- Formulario -->
+   
+      {%endif%} 
+      {% endfor %}
     </div>
   </div>
-    {%endif%}
-    {% endfor %}
-
-  </div>
-</div>
-    <br>
- 
+  <br />
+  
 </section>
+<!-- ocupar https://docs.djangoproject.com/en/4.1/ref/forms/widgets/ django widgets
+en forms ingresamos el campo witge ver el formato de la fecha dia mes y anio  -->
+<section>
 
+  <div class="row">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputState">Productos</label>
+          <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputEmail4">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail4"
+            placeholder="Email"
+          />
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputPassword4">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="inputPassword4"
+            placeholder="Password"
+          />
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputAddress">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress"
+            placeholder="1234 Main St"
+          />
+        </div>
+
+      </div>
+
+      
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity" />
+        </div>
+        
+        <div class="form-group col-md-4">
+          <label for="inputZip">Zip</label>
+          <input type="text" class="form-control" id="inputZip" />
+        </div>
+        
+      </div>
+
+      <div class="form-row">
+        <button type="submit" class="btn btn-primary center">Sign in</button>
+      </div>
+    
+      <!-- <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck" />
+          <label class="form-check-label" for="gridCheck"> Check me out </label>
+        </div>
+      </div> -->
+      
+    </form>
+  </div>
+
+</section>
 {% endblock %}

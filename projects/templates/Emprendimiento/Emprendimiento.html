@@ -1,162 +1,224 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-<!-- Aqui va el enlace del header -->
-<!-- django me permite llamar otros archivos -->
+  <!-- Aqui va el enlace del header -->
+  <!-- django me permite llamar otros archivos -->
 
-{% include "comun/estilos.html" %} 
+  {% include "comun/estilos.html" %}
 
+  <body>
+    <!-- Aqui vamos a crear todo el ambiente de trabajo de nuestro proyecto -->
+    <!-- Colocamos Bootstrap -->
 
-<body>
-        <!-- Aqui vamos a crear todo el ambiente de trabajo de nuestro proyecto -->
-        <!-- Colocamos Bootstrap -->
-    
-      
+    <div class="container">
+      {%include "comun/header.html"%} 
+      {%block content%}
+       {% load static %}
+        {% for emprende in emprendimiento %}
 
-        <div class="container">
+      <section>
+        <br />        
+        <div class="row ">
+          <div class="col-sm-10 col-md-5 col-lg-3 pb-4">
+            <div
+              class="py-5 px-4 text-center card"
+              style="width: 275px; height: 350px"
+            >
 
-            {%include "comun/header.html"%}
-            {%block content%} 
-            {% load static %}
+              <img
+                src="{{ emprende.foto.url}}"
+                class="img-fluid rounded-circle mb-2 img-thumbnail shadow-sm"
+                style="width: 200px; height: 200px"
+              />
+              <div class="card-body">
+                <h5 class="card-title text-center">
+                  {{emprende.nombre_emprendimiento}}
+                </h5>
+                <!-- <h4 >Categoria:{{emprende.tipo_emprendimiento}}</h4> -->
+                <p class="card-text"><small class="text-muted"></small></p>
+              </div>
+            </div>
+          </div>
+        </div> 
 
+        <br />
 
-            {% for emprende in emprendimiento %}
-            
-            <section>
-              
-              <br>
-             
-                
-                <div class="card">
-                  <img  class="rounded mx-auto d-block" src="{{ emprende.foto.url}}" alt="First slide" >
-                  <div class="card-body">
-                    <h5 class="card-title text-center">{{emprende.nombre_emprendimiento}}</h5>
-                  
-                    <p class="card-text"><small class="text-muted"></small></p>
-                    
+        <section>
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+            integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
+            crossorigin="anonymous"
+          />
+          <section class="deneb_cta">
+            <div class="container">
+              <div class="cta_wrapper">
+                <div class="row align-items-center">
+                  <div class="col-lg-7">
+                    <div class="cta_content">
+                      <h3>
+                        Tienes en mente viajar a San pedro de vilcabamba ?
+                      </h3>
+                      <p>{{emprende.descripcion}}</p>
+                    </div>
                   </div>
-                </div>
-                <br>
-             
-              
-            <section>
-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-<section class="deneb_cta">
-	<div class="container">
-		<div class="cta_wrapper">
-			<div class="row align-items-center">
-				<div class="col-lg-7">
-					<div class="cta_content">
-						<h3>Tienes en mente viajar a San pedro de vilcabamba ?</h3>
-						<p>{{emprende.descripcion}}</p>
-					</div>
-				</div>
-				<!-- <div class="col-lg-5">
+                   <div class="col-lg-5">
 					<div class="button_box">
 						<a href="#" class="btn btn2">Categorias</a>
 					</div>
-				</div> -->
-			</div>
-		</div>
-	</div>
-</section>
-              <footer class="deneb_footer">
-                <div class="widget_wrapper" style="background-image: url(http://demo.tortoizthemes.com/deneb-html/deneb-ltr/assets/images/footer_bg.png);">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-lg-4 col-md-6 col-12">
-                        <div class="widget widegt_about">
-                          <div class="widget_title">
-                            <img src="assets/images/logo_1.png" class="img-fluid" alt="">
-                          </div>
-                          <p>San Pedro de Vilcabamba es un pueblo que goza de un clima cálido subtropical, por encontrarse en la cordillera andina, su vegetación es de tipo bosque seco.</p>
-                          <ul class="social">
-                            <li><a href="{{emprende.instagram}}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="{{emprende.facebook}}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="{{emprende.twitter}}" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                          </ul>
-                        </div>
+				</div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <footer class="deneb_footer">
+            <div
+              class="widget_wrapper"
+              style="
+                background-image: url(http://demo.tortoizthemes.com/deneb-html/deneb-ltr/assets/images/footer_bg.png);
+              "
+            >
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6 col-12">
+                    <div class="widget widegt_about">
+                      <div class="widget_title">
+                        <img
+                          src="assets/images/logo_1.png"
+                          class="img-fluid"
+                          alt=""
+                        />
                       </div>
-                      <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="widget widget_link">
-                          <div class="widget_title">
-                            <h4>Links</h4>
-                          </div>
-                          <ul>
-                            <li><a href="https://www.sanpedrodevilcabamba.gob.ec/" target="_blank">GAD San Pedor de Vilcabamba</a></li>
-                            <li><a href="https://www.uide.edu.ec/" target="_blank">UIDE</a></li>
-                            <li><a href="https://www.loja.gob.ec/">Municipio de Loja</a></li>
-                          </ul>
-                        </div>
+                      <p>
+                        San Pedro de Vilcabamba es un pueblo que goza de un
+                        clima cálido subtropical, por encontrarse en la
+                        cordillera andina, su vegetación es de tipo bosque seco.
+                      </p>
+                      <ul class="social">
+                        <li>
+                          <a href="{{emprende.instagram}}" target="_blank"
+                            ><i class="fab fa-facebook-f"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a href="{{emprende.facebook}}" target="_blank"
+                            ><i class="fab fa-twitter"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a href="{{emprende.twitter}}" target="_blank"
+                            ><i class="fab fa-instagram"></i
+                          ></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="widget widget_link">
+                      <div class="widget_title">
+                        <h4>Links</h4>
                       </div>
-                      <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="widget widget_contact">
-                          <div class="widget_title">
-                            <h4>Contact Us</h4>
+                      <ul>
+                        <li>
+                          <a
+                            href="https://www.sanpedrodevilcabamba.gob.ec/"
+                            target="_blank"
+                            >GAD San Pedor de Vilcabamba</a
+                          >
+                        </li>
+                        <li>
+                          <a href="https://www.uide.edu.ec/" target="_blank"
+                            >UIDE</a
+                          >
+                        </li>
+                        <li>
+                          <a href="https://www.loja.gob.ec/"
+                            >Municipio de Loja</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="widget widget_contact">
+                      <div class="widget_title">
+                        <h4>Contact Us</h4>
+                      </div>
+                      <div class="contact_info">
+                        <div class="single_info">
+                          <div class="icon">
+                            <i class="fas fa-phone-alt"></i>
                           </div>
-                          <div class="contact_info">
-                            <div class="single_info">
-                              <div class="icon">
-                                <i class="fas fa-phone-alt"></i>
-                              </div>
-                              <div class="info">
-                                <p><a href="tel:+919246147999"> (593-7)2584-567</a> GAD San Pedro de Vilcabamba</p>
-                                <p><a href="tel:+919246147999"> (593-7)2584-567</a> UIDE</p>
-                                <p><a href="tel:+919246147999">(593-7)2563336</a> UIDE</p>
-                              </div>
-                            </div>
-                            <div class="single_info">
-                              <div class="icon">
-                                <i class="fas fa-envelope"></i>
-                              </div>
-                              <div class="info">
-                                <p><a href="https://www.sanpedrodevilcabamba.gob.ec/" target="_blank">www.sanpedrodevilcabamba.gob.ec/</a></p>
-                                <p><a href="mailto:admisiones@uide.edu.ec">admisiones@uide.edu.ec</a></p>
-                              </div>
-                            </div>
-                            <div class="single_info">
-                              <div class="icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                              </div>
-                              <div class="info">
-                                <p><a href="https://goo.gl/maps/RS56SQBpGjeR9CLW9" target="_blank">14º15” de latitud sur y 79º 19” de longitud occidental</a></p>
-                              </div>
-                            </div>
+                          <div class="info">
+                            <p>
+                              <a href="tel:+919246147999"> (593-7)2584-567</a>
+                              GAD San Pedro de Vilcabamba
+                            </p>
+                            <p>
+                              <a href="tel:+919246147999"> (593-7)2584-567</a>
+                              UIDE
+                            </p>
+                            <p>
+                              <a href="tel:+919246147999">(593-7)2563336</a>
+                              UIDE
+                            </p>
+                          </div>
+                        </div>
+                        <div class="single_info">
+                          <div class="icon">
+                            <i class="fas fa-envelope"></i>
+                          </div>
+                          <div class="info">
+                            <p>
+                              <a
+                                href="https://www.sanpedrodevilcabamba.gob.ec/"
+                                target="_blank"
+                                >www.sanpedrodevilcabamba.gob.ec/</a
+                              >
+                            </p>
+                            <p>
+                              <a href="mailto:admisiones@uide.edu.ec"
+                                >admisiones@uide.edu.ec</a
+                              >
+                            </p>
+                          </div>
+                        </div>
+                        <div class="single_info">
+                          <div class="icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                          </div>
+                          <div class="info">
+                            <p>
+                              <a
+                                href="https://goo.gl/maps/RS56SQBpGjeR9CLW9"
+                                target="_blank"
+                                >14º15” de latitud sur y 79º 19” de longitud
+                                occidental</a
+                              >
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="copyright_area">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="copyright_text">
-                          <p>Copyright &copy; 2020 All rights reserved.</p>
-                        </div>
-                      </div>
+              </div>
+            </div>
+            <div class="copyright_area">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="copyright_text">
+                      <p>Copyright &copy; 2020 All rights reserved.</p>
                     </div>
                   </div>
                 </div>
-              </footer>
-           
-              
-            </section>
-            </section>
-            {% endfor %}
-
-             {% endblock %}
-           
-           
-             
-           
-     
-
-        </div>
-    </body>
+              </div>
+            </div>
+          </footer>
+        </section>
+      </section>
+      {% endfor %}
+      {% endblock %}
+    </div>
+  </body>
 </html>
-
-

@@ -1,0 +1,52 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+.card{
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+}
+
+.nombre{
+    margin-top: auto;
+}
+
+.hcinco{
+    font-family: 'Roboto', sans-serif;
+    font-weight:bold;
+}
+
+.redesSociales{
+
+  height: 2px;
+    position:sticky;
+
+}
+
+img{
+    position:sticky;
+    margin:auto;
+}
+
+.social{
+    width: 200px;
+}
+
+.social-link {
+    width: 16px;
+    height: 16px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 20%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.social-link:hover, .social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+}
+

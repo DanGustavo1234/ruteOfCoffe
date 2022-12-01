@@ -32,10 +32,10 @@ class Cliente(Persona):
 
 class Categoria(models.Model):
     TIPO = [
-        ('Hospedaje','Hospedaje'),
+        ('Hospedaje y Hosterias','Hospedaje y Hosterias'),
         ('Gastronomia','Gastronomia'),
-        ('Hosterias','Spot Turistico'),
-        ('Vendedores','Productor - Vendedor'),
+        ('Servicios y Spots Turisticos','Servicios y Spots Turisticos'),
+        ('Productos ','Productos'),
     ]
     nombre = models.CharField(verbose_name="Nombre de la Categoría", max_length=100,choices=TIPO,null=True, blank=True)
     foto= models.ImageField(upload_to = "static\img\cat", verbose_name = "Foto de la Categoría", null = True, blank = True)
@@ -43,7 +43,21 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
 
+#--------------------------------------------------------------------------------------------------------------------------------------
+class Producto(models.Model):
+    nombre_producto = models.CharField(verbose_name="Nombre del Producto", max_length=100)
+    descripcion_producto=models.TextField(verbose_name="Descripción del Producto", null=True, blank=True)
+    cantidad = models.IntegerField(verbose_name="Cantidad del Producto")
+    precio=models.IntegerField(verbose_name="Precio del Producto" ,null=True, blank=True)
 
+    class Meta:
+        verbose_name = "Producto"
+        verbose_name_plural = "Productos"
+
+    def __str__(self):
+         return self.nombre_producto 
+
+    pass
 #---------------------------------------------------------------------------------------------------------------------------------------
 class Emprendimiento(models.Model):
 
@@ -62,6 +76,7 @@ class Emprendimiento(models.Model):
     instagram=models.URLField(verbose_name="Instagram", null=True, blank=True)
     facebook=models.URLField(verbose_name="Facebook", null=True, blank=True)
     twitter=models.URLField(verbose_name="Twitter", null=True, blank=True)
+    producto=models.ForeignKey(Producto,on_delete=models.CASCADE, null=True, blank=True)
    
 
 
@@ -123,34 +138,21 @@ class Video_imagen(models.Model):
     pass
 
 # ---------------------------------------------------------------------------------------------------------------------------------------
-class Producto(models.Model):
-    nombre_producto = models.CharField(verbose_name="Nombre del Producto", max_length=100)
-    descripcion_producto=models.TextField(verbose_name="Descripción del Producto", null=True, blank=True)
-    cantidad = models.IntegerField(verbose_name="Cantidad del Producto")
-    precio=models.IntegerField(verbose_name="Precio del Producto" ,null=False, blank=True)
-    emprendimiento=models.ForeignKey(Emprendimiento, on_delete=models.CASCADE)
 
-    class Meta:
-        verbose_name = "Producto"
-        verbose_name_plural = "Productos"
-
-    def __str__(self):
-         return self.nombre_emprendimiento + " - " + self.nombre_producto 
-
-    pass
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 class Reserva(Producto):
     fecha_reserva = models.DateTimeField()
     fecha_vencimiento = models.DateTimeField()
+    cantidad_productos=models.IntegerField(verbose_name="Cantidad de Productos", null=True, blank=True)
     foto=models.ImageField(upload_to = "static/img/fotosReserva", verbose_name = "Logo", null = True, blank = True)
-    cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, null = True, blank = True)
     class Meta:
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
 
     def __str__(self):
-        return self.nombre_producto + self.cliente.nombre
+        return self.nombre_producto + self.cliente.cliente.nombre
 
     pass
 
