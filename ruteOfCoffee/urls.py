@@ -31,7 +31,7 @@ urlpatterns = [
     path('emprendimiento/<int:id>', views.ver_emprendimiento, name="ver emprendimiento"),
     path('Categoria/categorias.html/<int:id>', views.ver_por_categoria, name="ver por categoria"),
     path('emprendedor/Emprendedor.html', views.ver_emprendedor, name="ver emprendedor"),
-    path('reservas/reservas.html', views.Gestionar_reserva.as_view(), name="reservas"),
+    path('reservas/reservas.html', views.reserva, name="reservas"),
     path('prueba/', views.prueba, name="prueba"),
     path('admin/', admin.site.urls),
     path('',include('projects.urls')),

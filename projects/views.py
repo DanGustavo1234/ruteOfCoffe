@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views import View
 from .models import Emprendimiento, Categoria, Emprendedor, Score, Video_imagen, Producto, Reserva, Compra
 from projects import views
-from .forms import ReservaFormulario 
+from .forms import *
 from django.http import HttpResponseRedirect
 # Create your views here.
 
@@ -51,39 +51,15 @@ def ver_emprendedor(request):
     emprendedor = Emprendedor.objects.all()
     return render(request, 'emprendedor/Emprendedor.html', {'emprendedor': emprendedor})
 
-class Gestionar_reserva(View): 
-
-    def get (self,request):
-        reservas = Reserva.objects.all()
-        form = ReservaFormulario
-        return render(request, 'reservas/reservas.html', {'reservas': reservas,'form': form})
-
-    def post(request,this, format = None):
-        print(request.POST)
-        form = ReservaFormulario(request.POST or None, request.FILES or None)
-
-
-        # Validadmos el formulario
-
-        if form.is_valid():
-            fecha_inicio = form.cleaned_data['fecha_inicio']
-            tipo_emprendimiento = form.cleaned_data['tipo_emprendimiento']
-            cantidad_productos = form.cleaned_data['cantidad_productos']
-            nombre_producto= form.cleaned_data[' nombre_producto']
-
-            reserva = Reserva(
-                Fecha_inicio=fecha+inicio,
-                tipo_emprendimiento=tipo_emprendimiento,
-                cantidad_productos=cantidad_productos,
-                nombre_producto= nombre_producto,
-                )
-            reserva.save()
-            form = ReservaFormulario()
-            return HttpResponseRedirect("index")
-
-        else:
-            return render(request, 'reservas/reservas.html', {'reservas': reservas,'form': form})
-
+def reserva(request):
+      form=Resformulario(request.POST or None)
+      print(form)
+      if form.is_valid():
+            form.save()
+            
+      
+      reservas=Reserva2.objects.all()
+      return render(request, 'reservas/reservas.html', {'reservas':reservas,'form':form} )
 
 def prueba(request):
     return render(request, 'presentacion/prueba.html', {})

@@ -7,7 +7,7 @@ from .models import Producto
 from .models import Reserva
 from .models import Compra
 from .models import Categoria
-
+from .models import Reserva2
 
 
 class EmprendimientoSerializers(serializers.ModelSerializer):
@@ -56,4 +56,10 @@ class CategoriaSerializers(serializers.ModelSerializer):
     class Meta:
         model=Categoria
         fields=['nombre']
+        read_only_fields=('created_at',)
+
+class Reserva2Serializers(serializers.ModelSerializer):
+    class Meta:
+        model=Reserva2
+        fields=['fecha','nombre_producto','cantidad']
         read_only_fields=('created_at',)

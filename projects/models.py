@@ -47,8 +47,8 @@ class Categoria(models.Model):
 class Producto(models.Model):
     nombre_producto = models.CharField(verbose_name="Nombre del Producto", max_length=100)
     descripcion_producto=models.TextField(verbose_name="Descripción del Producto", null=True, blank=True)
-    cantidad = models.IntegerField(verbose_name="Cantidad del Producto")
     precio=models.IntegerField(verbose_name="Precio del Producto" ,null=True, blank=True)
+    foto=models.ImageField(upload_to = "static/img/fotosReserva", verbose_name = "Logo", null = True, blank = True)
 
     class Meta:
         verbose_name = "Producto"
@@ -142,11 +142,7 @@ class Video_imagen(models.Model):
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 class Reserva(Producto):
-    fecha_reserva = models.DateTimeField()
-    fecha_vencimiento = models.DateTimeField()
-    cantidad_productos=models.IntegerField(verbose_name="Cantidad de Productos", null=True, blank=True)
-    foto=models.ImageField(upload_to = "static/img/fotosReserva", verbose_name = "Logo", null = True, blank = True)
-    cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, null = True, blank = True)
+    fecha = models.DateTimeField()
     class Meta:
         verbose_name = "Reserva"
         verbose_name_plural = "Reservas"
@@ -155,6 +151,19 @@ class Reserva(Producto):
         return self.nombre_producto + self.cliente.cliente.nombre
 
     pass
+
+class Reserva2(models.Model):
+    cantidad=models.IntegerField(verbose_name="Cantidad", null=True, blank=True)
+    fecha = models.DateTimeField( null=True, blank=True)
+    nombre_producto=models.ForeignKey(Producto,on_delete=models.CASCADE, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Reserva2"
+        verbose_name_plural = "Reservas2"
+
+    def __str__(self):
+        return self.nombre_producto
+
 
 # ---------------------------------------------------------------------------------------------------------------------------------------
 class Compra(Producto):
