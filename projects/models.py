@@ -44,20 +44,7 @@ class Categoria(models.Model):
         return self.nombre
 
 #--------------------------------------------------------------------------------------------------------------------------------------
-class Producto(models.Model):
-    nombre_producto = models.CharField(verbose_name="Nombre del Producto", max_length=100)
-    descripcion_producto=models.TextField(verbose_name="Descripción del Producto", null=True, blank=True)
-    precio=models.IntegerField(verbose_name="Precio del Producto" ,null=True, blank=True)
-    foto=models.ImageField(upload_to = "static/img/fotosReserva", verbose_name = "Logo", null = True, blank = True)
 
-    class Meta:
-        verbose_name = "Producto"
-        verbose_name_plural = "Productos"
-
-    def __str__(self):
-         return self.nombre_producto 
-
-    pass
 #---------------------------------------------------------------------------------------------------------------------------------------
 class Emprendimiento(models.Model):
 
@@ -76,7 +63,7 @@ class Emprendimiento(models.Model):
     instagram=models.URLField(verbose_name="Instagram", null=True, blank=True)
     facebook=models.URLField(verbose_name="Facebook", null=True, blank=True)
     twitter=models.URLField(verbose_name="Twitter", null=True, blank=True)
-    producto=models.ForeignKey(Producto,on_delete=models.CASCADE, null=True, blank=True)
+    
    
 
 
@@ -87,7 +74,22 @@ class Emprendimiento(models.Model):
     def __str__(self):
         return  self.nombre_emprendimiento
 
+# --------------------------------------------------------------------------------------------------------------------------------------
+class Producto(models.Model):
+    nombre_producto = models.CharField(verbose_name="Nombre del Producto", max_length=100)
+    descripcion_producto=models.TextField(verbose_name="Descripción del Producto", null=True, blank=True)
+    precio=models.IntegerField(verbose_name="Precio del Producto" ,null=True, blank=True)
+    foto=models.ImageField(upload_to = "static/img/fotosReserva", verbose_name = "Logo", null = True, blank = True)
+    emprendimiento=models.ForeignKey(Emprendimiento, on_delete=models.RESTRICT, null=True, blank=True)
 
+    class Meta:
+        verbose_name = "Producto"
+        verbose_name_plural = "Productos"
+
+    def __str__(self):
+         return self.nombre_producto 
+
+    pass
 #---------------------------------------------------------------------------------------------------------------------------------------
 class Emprendedor(Persona):
     # crear una relacion de muchos a muchos 
@@ -153,6 +155,8 @@ class Reserva(Producto):
     pass
 
 class Reserva2(models.Model):
+    # Agregar cedula , nombre completos ,telefono y correo electronico
+    # Agregar ubicacacion o direccion de entrega del producto 
     cantidad=models.IntegerField(verbose_name="Cantidad", null=True, blank=True)
     fecha = models.DateTimeField( null=True, blank=True)
     nombre_producto=models.ForeignKey(Producto,on_delete=models.CASCADE, null=True, blank=True)
@@ -162,7 +166,7 @@ class Reserva2(models.Model):
         verbose_name_plural = "Reservas2"
 
     def __str__(self):
-        return self.nombre_producto
+        return self.nombre_producto.nombre_producto
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------

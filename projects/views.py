@@ -42,24 +42,38 @@ def ver_por_categoria(request, id):
 
 
 def ver_emprendimiento(request, id):
+    form=Resformulario(request.POST or None)
+    print(form)
     emprendimiento = Emprendimiento.objects.all().filter(id=id)
     print(emprendimiento)
-    return render(request, 'Emprendimiento/Emprendimiento.html', {'emprendimiento': emprendimiento})
+    producto=Producto.objects.all().filter(id=id)
+    print(producto)
+    return render(request, 'Emprendimiento/Emprendimiento.html', {
+        'emprendimiento': emprendimiento,
+        'form':form,
+        'producto':producto
+        })
 
 
 def ver_emprendedor(request):
     emprendedor = Emprendedor.objects.all()
     return render(request, 'emprendedor/Emprendedor.html', {'emprendedor': emprendedor})
 
-def reserva(request):
-      form=Resformulario(request.POST or None)
-      print(form)
-      if form.is_valid():
-            form.save()
-            
+def reserva(request,*agrs,**kwargs):
+
+    form=Resformulario(request.POST or None)
+    print(form)
+    if form.is_valid():
+        fecha=form.cleaned_data['fecha']
+        cantidad=form.cleaned_data['cantidad']
+        nombre_producto=form.cleaned_data['nombre_producto']
+        # crear el objeto reserva
+        reserva=Reserva(fecha=fecha,cantidad=cantidad,nombre_producto=nombre_producto)
+        print(reserva)
+        reserva.save()
       
-      reservas=Reserva2.objects.all()
-      return render(request, 'reservas/reservas.html', {'reservas':reservas,'form':form} )
+    reservas=Reserva2.objects.all() 
+    return render(request, 'reservas/reservas.html', {'reservas':reservas,'form':form} )
 
 def prueba(request):
     return render(request, 'presentacion/prueba.html', {})

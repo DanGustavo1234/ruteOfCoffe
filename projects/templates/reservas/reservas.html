@@ -14,56 +14,10 @@
   
   
   
-  <br />
-  <div class="row">
-    <div class="card-group">
-      {% for reserva in reservas %}
-       {% if forloop.counter|divisibleby:"1" %}
-      <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
-        <div class="card">
-          <img
-            src="{{reserva.nombre_producto.foto.url}}"
-            class="card-img-top text-center"
-            style="width: 250px; height: 250px ; border-radius:30px ;" 
-          />
-          <div class="card-body">
-            <h5 class="card-title text-center">
-              Precio : {{reserva.nombre_producto.precio}} $
-            </h5>
-            <h5 class="card-title text-center">
-              Producto :{{reserva.nombre_producto}}
-            </h5>
-            <h5 class="card-title text-center">
-              Cantidad :{{reserva.cantidad}}
-            </h5>
-            <!-- <h4 >Categoria:{{emprende.tipo_emprendimiento}}</h4> -->
-            <p class="card-text"><small class="text-muted"></small></p>
-          </div>
-        </div>
-      </div>
-      <!-- Reservas de productos -->
-      <!-- Formulario -->
-   
-      {%endif%} 
-      {% endfor %}
-    </div>
-  </div>
-  <br />
+  
   
 </section>
 <!-- ocupar https://docs.djangoproject.com/en/4.1/ref/forms/widgets/ django widgets
 en forms ingresamos el campo witge ver el formato de la fecha dia mes y anio  -->
-<section>
 
-  <div class="row">
-    <form  enctype="multipart/form-data" method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <div class="form-row">
-        <button type="submit" class="btn btn-primary center">Sign in</button>
-      </div>
-    </form>
-  </div>
-
-</section>
 {% endblock %}
