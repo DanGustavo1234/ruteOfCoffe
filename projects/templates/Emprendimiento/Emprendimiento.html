@@ -50,10 +50,12 @@
             <br />
 
          <span>productos ofertados </span>   
-         
+
+{% for produc in producto %}
+
   <div class="row">
     <div class="card-group">
-      {% for produc in producto %}
+      
       <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
         <div class="card">
           <img
@@ -79,9 +81,10 @@
       <!-- Reservas de productos -->
       <!-- Formulario -->
 
-      {% endfor %}
+      
     </div>
   </div>
+  {% endfor %}
   <br />
 
           </section>

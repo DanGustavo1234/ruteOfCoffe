@@ -1,23 +1,28 @@
 from django.db import models
+# Para los usuarios de django
+from django.contrib.auth.models import AbstractUser
+
+
 
 # Create your models here.
 
-class Persona(models.Model):
+class Persona(AbstractUser):
 
     TIPO_DOCUMENTO = [
         ('cedula','Cedula'),
         ('pasaporte','Pasaporte'),
 
     ]
+    username=models.CharField(max_length=100,unique=True)
+    email=models.EmailField(max_length=150,unique=True)
 
     tipo_documento = models.CharField(verbose_name="Tipo de Documento", max_length=20, choices = TIPO_DOCUMENTO)
     num_documento = models.CharField(verbose_name="Número de Documento", max_length = 13)
     nombre = models.CharField(verbose_name="Nombre", max_length = 100)
     apellido = models.CharField(verbose_name="Apellido", max_length = 100)
-    email = models.EmailField(verbose_name="E-mail")
     telefono = models.CharField(verbose_name="Teléfono", max_length=13)
     direccion = models.CharField(verbose_name="Dirección", max_length=200)
-    fecha_nacimiento = models.DateField(verbose_name="Fecha de Nacimiento")
+    fecha_nacimiento = models.DateField(verbose_name="Fecha de Nacimiento", null=True, blank=True)
     pais_origen = models.CharField(verbose_name="País de origen", max_length=200)
     foto = models.ImageField(upload_to = "static\img\emprendedores", verbose_name = "Foto de Perfil", null = True, blank = True)
 
@@ -44,7 +49,19 @@ class Categoria(models.Model):
         return self.nombre
 
 #--------------------------------------------------------------------------------------------------------------------------------------
+class Producto(models.Model):
+    nombre_producto = models.CharField(verbose_name="Nombre del Producto", max_length=100)
+    descripcion_producto=models.TextField(verbose_name="Descripción del Producto", null=True, blank=True)
+    precio=models.IntegerField(verbose_name="Precio del Producto" ,null=True, blank=True)
+    foto=models.ImageField(upload_to = "static/img/fotosReserva", verbose_name = "Logo", null = True, blank = True)
+    
 
+    class Meta:
+        verbose_name = "Producto"
+        verbose_name_plural = "Productos"
+
+    def __str__(self):
+         return self.nombre_producto 
 #---------------------------------------------------------------------------------------------------------------------------------------
 class Emprendimiento(models.Model):
 
@@ -63,7 +80,7 @@ class Emprendimiento(models.Model):
     instagram=models.URLField(verbose_name="Instagram", null=True, blank=True)
     facebook=models.URLField(verbose_name="Facebook", null=True, blank=True)
     twitter=models.URLField(verbose_name="Twitter", null=True, blank=True)
-    
+    producto=models.ManyToManyField(Producto,blank=True, null=True)
    
 
 
@@ -75,21 +92,9 @@ class Emprendimiento(models.Model):
         return  self.nombre_emprendimiento
 
 # --------------------------------------------------------------------------------------------------------------------------------------
-class Producto(models.Model):
-    nombre_producto = models.CharField(verbose_name="Nombre del Producto", max_length=100)
-    descripcion_producto=models.TextField(verbose_name="Descripción del Producto", null=True, blank=True)
-    precio=models.IntegerField(verbose_name="Precio del Producto" ,null=True, blank=True)
-    foto=models.ImageField(upload_to = "static/img/fotosReserva", verbose_name = "Logo", null = True, blank = True)
-    emprendimiento=models.ForeignKey(Emprendimiento, on_delete=models.RESTRICT, null=True, blank=True)
 
-    class Meta:
-        verbose_name = "Producto"
-        verbose_name_plural = "Productos"
 
-    def __str__(self):
-         return self.nombre_producto 
 
-    pass
 #---------------------------------------------------------------------------------------------------------------------------------------
 class Emprendedor(Persona):
     # crear una relacion de muchos a muchos 
@@ -143,23 +148,14 @@ class Video_imagen(models.Model):
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------
-class Reserva(Producto):
-    fecha = models.DateTimeField()
-    class Meta:
-        verbose_name = "Reserva"
-        verbose_name_plural = "Reservas"
 
-    def __str__(self):
-        return self.nombre_producto + self.cliente.cliente.nombre
-
-    pass
 
 class Reserva2(models.Model):
     # Agregar cedula , nombre completos ,telefono y correo electronico
     # Agregar ubicacacion o direccion de entrega del producto 
     cantidad=models.IntegerField(verbose_name="Cantidad", null=True, blank=True)
     fecha = models.DateTimeField( null=True, blank=True)
-    nombre_producto=models.ForeignKey(Producto,on_delete=models.CASCADE, null=True, blank=True)
+    nombre_producto=models.ManyToManyField(Producto,blank=True, null=True)
 
     class Meta:
         verbose_name = "Reserva2"

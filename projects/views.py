@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
 from django.views import View
-from .models import Emprendimiento, Categoria, Emprendedor, Score, Video_imagen, Producto, Reserva, Compra
+from .models import Emprendimiento, Categoria, Emprendedor, Score, Video_imagen, Producto, Reserva2, Compra
 from projects import views
 from .forms import *
 from django.http import HttpResponseRedirect
@@ -46,7 +46,7 @@ def ver_emprendimiento(request, id):
     print(form)
     emprendimiento = Emprendimiento.objects.all().filter(id=id)
     print(emprendimiento)
-    producto=Producto.objects.all().filter(id=id)
+    producto=Producto.objects.all()
     print(producto)
     return render(request, 'Emprendimiento/Emprendimiento.html', {
         'emprendimiento': emprendimiento,
