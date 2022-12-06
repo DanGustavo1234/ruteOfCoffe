@@ -11,26 +11,39 @@
   <!-- <h1 class="alert alert-danger text-center">Emprendimientos </h1> -->
   <br>
   <div class="row">
-  <div class="card-group">
     {% for emprende in emprendimientos  %}
-    {% if forloop.counter|divisibleby:"1"  %}
-    <div class="col-sm-12 col-md-6 col-lg-3 pb-4">
-    <div class="card">
-      <a href="/emprendimiento/{{emprende.id}}">
-        <img src="{{emprende.foto.url}}" class="card-img-top text-center"  style=" width: 250px; height: 250px; ">
-      </a>
-     
-      <div class="card-body text-center">
-        <h5 class="card-title text-center">{{emprende.nombre_emprendimiento}}</h5>
-        <a href="#" class="btn btn-primary ">Reserva</a>
-        <p class="card-text"><small class="text-muted"></small></p>
-      </div>
-    </div>
-  </div>
-    {%endif%}
-    {% endfor %}
+  <div class=" col-sm-12 col-md-6 col-lg-3 pb-4"> 
+    
+    
+    <div class="container">
+          <!-- Team item -->
+          
+              <div class=" py-5 px-4 text-center card" style="width:250px ;height:325px ;">
+                <a href="/emprendimiento/{{emprende.id}}">
+                <img src="{{emprende.foto.url}}" alt="" width="200px" height="200px"  class="img-fluid rounded-circle mb-2 img-thumbnail shadow-sm">
+              </a>
+                <div class="nombre">
+                  <h5 class="hcinco">{{emprende.nombre_emprendimiento}}</h5>
+                </div>
+                <br>
+                 <div class="redesSociales">
+                  <ul class="social">
+                    <li class="list-inline-item" ><a href="{{emprende.facebook}}" target="_blank" class="social-link"><img src="https://unpkg.com/simple-icons@7.21.0/icons/facebook.svg" alt="Facebook" title="Facebook" ></a></li>
+                    <li class="list-inline-item"><a href="{{emprende.twitter}}" target="_blank" class="social-link"><img src="https://unpkg.com/simple-icons@7.21.0/icons/twitter.svg" alt="Twitter" title="Twitter"></a></li>
+                    <li class="list-inline-item"><a href="{{emprende.instagram}}" target="_blank" class="social-link"><img src="https://unpkg.com/simple-icons@7.21.0/icons/instagram.svg" alt="Instagram" title="Instagram"></a></li>
+                </ul>
+
+               
+
+                 </div>
+                
+              </div>
+       </div>
 
   </div>
+    {% endfor %}
+ 
+  <!-- </div> -->
 </div>
     <br>
  

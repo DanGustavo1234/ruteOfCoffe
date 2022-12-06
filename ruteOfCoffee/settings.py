@@ -19,7 +19,7 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 # agregamos las opciones de lectura de los archivos trabjados en html 
 # Cargamos la carpeta tmplates
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 # Cargamos la carpeta static
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 # Cargamos la carpeta media videos imagenes etc
@@ -33,9 +33,9 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = 'RENDER' not in os.environ
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 

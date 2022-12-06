@@ -33,13 +33,25 @@ class Resformulario(forms.ModelForm):
      class Meta:
 
         model=Reserva2
-        fields=['fecha','cantidad','nombre_producto']
+        fields=['cantidad','fecha','cedula','nombres','telefono','correo']
 
         labels={
-            'fecha':'Fecha',
             'cantidad':'Cantidad',
-            'nombre_producto':'Producto'
+            'fecha':'Fecha',
+            'cedula':'Cedula',
+            'nombres':'Nombres',
+            'telefono':'Telefono',
+            'correo':'Correo'
         }
-    
+     cantidad= forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control','type':'number'}))
+     fecha = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control'}))
+     cedula = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+     nombres = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+     telefono = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+     correo = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+
+     
+
+
 
     

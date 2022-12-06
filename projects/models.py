@@ -80,7 +80,9 @@ class Emprendimiento(models.Model):
     instagram=models.URLField(verbose_name="Instagram", null=True, blank=True)
     facebook=models.URLField(verbose_name="Facebook", null=True, blank=True)
     twitter=models.URLField(verbose_name="Twitter", null=True, blank=True)
-    producto=models.ManyToManyField(Producto,blank=True, null=True)
+    producto=models.ManyToManyField(Producto,blank=True,null=True)
+
+    
    
 
 
@@ -98,7 +100,7 @@ class Emprendimiento(models.Model):
 #---------------------------------------------------------------------------------------------------------------------------------------
 class Emprendedor(Persona):
     # crear una relacion de muchos a muchos 
-    emprendimientos=models.OneToOneField (Emprendimiento,blank=True,on_delete=models.CASCADE,default=1)
+    emprendimientos=models.ManyToManyField(Emprendimiento,blank=True,null=True)
 
 
     class Meta:
@@ -151,7 +153,10 @@ class Video_imagen(models.Model):
 
 
 class Reserva2(models.Model):
-    # Agregar cedula , nombre completos ,telefono y correo electronico
+    cedula=models.CharField(verbose_name="Cedula", max_length=10, null=True, blank=True)
+    nombres=models.CharField(verbose_name="Nombre", max_length=100, null=True, blank=True)
+    telefono=models.CharField(verbose_name="Telefono", max_length=10, null=True, blank=True)
+    correo=models.EmailField(verbose_name="Correo", max_length=100, null=True, blank=True)
     # Agregar ubicacacion o direccion de entrega del producto 
     cantidad=models.IntegerField(verbose_name="Cantidad", null=True, blank=True)
     fecha = models.DateTimeField( null=True, blank=True)
@@ -162,7 +167,7 @@ class Reserva2(models.Model):
         verbose_name_plural = "Reservas2"
 
     def __str__(self):
-        return self.nombre_producto.nombre_producto
+        return self.cedula
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------

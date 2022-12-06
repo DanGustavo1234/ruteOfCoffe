@@ -6,18 +6,47 @@
 
 
 <section>
-  <!-- <h1 class="alert alert-danger text-center">Emprendimientos </h1> -->
-  <!-- Fecha_inicio=fecha+inicio,
-  tipo_emprendimiento=tipo_emprendimiento,
-  cantidad_productos=cantidad_productos,
-  nombre_producto= nombre_producto -->
   
-  
-  
-  
-  
-</section>
-<!-- ocupar https://docs.djangoproject.com/en/4.1/ref/forms/widgets/ django widgets
-en forms ingresamos el campo witge ver el formato de la fecha dia mes y anio  -->
+{% for produc in producto %}
 
+  <a
+href="/emprendimiento/1"
+><img src="https://unpkg.com/simple-icons@7.21.0/icons/carrefour.svg" style="width:20px; height: 20px;"></a>
+
+
+<div class="container" style="  display: flex;
+
+align-items: center;
+justify-content: center;">
+  <div class="card center" style="width:600px;" >
+    <div class="row" style="background-color:None; border-color: None; border-radius: 40px;">
+        <div class="col-md-4">
+            <img class="img-fluid  mb-2 img-thumbnail shadow-sm"
+            style="width: 400px; height: 200px ; border-radius:30px ; "src="{{produc.foto.url}}">
+        </div>
+        <div class="col-md-7">
+             <div class="card-body "> 
+              <div class="row">
+                <form  enctype="multipart/form-data" method="POST">
+                  {% csrf_token %}   
+                  {{ form.as_p }}    
+                
+                  <button type="submit" class="btn" style="color:black; background-color:#90C8AC;">Enviar</button>
+                </form>
+              </div>
+           </div> 
+       </div>
+    </div>
+</div>
+
+</div>
+
+{%endfor%} 
+<br>
+
+</section>
+  
+  
+  
+  
 {% endblock %}

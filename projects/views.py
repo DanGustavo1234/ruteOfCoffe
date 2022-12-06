@@ -46,7 +46,7 @@ def ver_emprendimiento(request, id):
     print(form)
     emprendimiento = Emprendimiento.objects.all().filter(id=id)
     print(emprendimiento)
-    producto=Producto.objects.all()
+    producto=Producto.objects.all().filter(emprendimiento=id)
     print(producto)
     return render(request, 'Emprendimiento/Emprendimiento.html', {
         'emprendimiento': emprendimiento,
@@ -59,21 +59,49 @@ def ver_emprendedor(request):
     emprendedor = Emprendedor.objects.all()
     return render(request, 'emprendedor/Emprendedor.html', {'emprendedor': emprendedor})
 
-def reserva(request,*agrs,**kwargs):
+# def reservas_get(request,id):
+#     form=Resformulario()
+#     return render(request, 'reservas/reservas.html', {'form':form} )
 
-    form=Resformulario(request.POST or None)
-    print(form)
-    if form.is_valid():
-        fecha=form.cleaned_data['fecha']
-        cantidad=form.cleaned_data['cantidad']
-        nombre_producto=form.cleaned_data['nombre_producto']
+def reserva(request,id):
+    # request.GET
+    print(request.method)
+    if request.method == 'POST':
+        form=Resformulario(request.POST or None)
+        print(form)
+        producto=Producto.objects.all().filter(id=id)
+        print(producto)
+        emprendimiento = Emprendimiento.objects.all().filter(id=id)
+        print(emprendimiento)
+        print(request.POST)
+        # if form.is_valid():
+        # cantidad= form.cleaned_data['cantidad']
+        # fecha = form.cleaned_data['fecha']
+        # cedula = form.cleaned_data['cedula']
+        # nombres =  form.cleaned_data['nombres']
+        # telefono = form.cleaned_data['telefono']
+        # correo = form.cleaned_data['correo']
+
+        cantidad= form.cleaned_data.get('cantidad')
+        fecha = form.cleaned_data.get('fecha')
+        cedula = form.cleaned_data.get('cedula')
+        nombres =  form.cleaned_data.get('nombres')
+        telefono = form.cleaned_data.get('telefono')
+        correo = form.cleaned_data.get('correo')
+        print("cantidad",cantidad,"fecha",fecha,"cedula",cedula,"nombres",nombres,"telefono",telefono,"correo",correo)
         # crear el objeto reserva
-        reserva=Reserva(fecha=fecha,cantidad=cantidad,nombre_producto=nombre_producto)
-        print(reserva)
+        reserva=Reserva2( cantidad=cantidad, fecha=fecha, cedula=cedula, nombres=nombres, telefono=telefono, correo=correo)
         reserva.save()
-      
-    reservas=Reserva2.objects.all() 
-    return render(request, 'reservas/reservas.html', {'reservas':reservas,'form':form} )
-
+        reservas=Reserva2.objects.all() 
+        return render(request, 'emprendimiento/lista_empren.html', { } )
+    if request.method == 'GET':
+        producto=Producto.objects.all().filter(id=id)
+        print(producto)
+        form=Resformulario()
+        return render(request, 'reservas/reservas.html', {
+            'form':form,
+            'producto':producto
+            } )
+          
 def prueba(request):
     return render(request, 'presentacion/prueba.html', {})
