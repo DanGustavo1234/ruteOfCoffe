@@ -53,7 +53,7 @@ body{margin-top:20px;}
     background-image: -webkit-linear-gradient(0deg, #73A9AD 0%, #90C8AC 100%);
     background-image: -ms-linear-gradient(0deg, #73A9AD 0%, #90C8AC 100%);
     color: #fff;
-    box-shadow: 2.5px 4.33px 15px 0px rgba(163, 6, 137, 0.4);
+    box-shadow: 2.5px 4.33px 15px 0px #73A9AD;
 }
 .deneb_footer .widget_wrapper .widget_link ul li {
     margin-bottom: 5px;

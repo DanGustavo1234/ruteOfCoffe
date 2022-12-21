@@ -46,25 +46,27 @@
       
      
     </div>
+
+    <br>
+    <!-- Se puede hacer clicleable la card o un boton que nos lleve a los emprendimientos filtrados  -->
+    <h3 style="font-size:medium;">Categorias</h3>
+    
+    <br>
       </div>
-
-
-
-<!-- Se puede hacer clicleable la card o un boton que nos lleve a los emprendimientos filtrados  -->
 
 <section>
-  <br>
+
+
   <div class="card-group">
     {% for categoria in categorias %}
-    <div class="card">
+    <div class="card text-center">
       <a href="/Categoria/categorias.html/{{categoria.id}}">
-        <img src="{{categoria.foto}}" class="card-img-top" >
+        <img src="{{categoria.foto}}" class="text-center" style="width: 185px; height: 185px;" >
+        <div class="card-body">
+          <h3 class="card-title h3 text-center" style="font-family:'Roboto', sans-serif ; font-size:medium;color: black;">{{categoria.nombre}}</h3>
+     
+        </div>
       </a>
-      
-      <div class="card-body">
-        <h3 class="card-title h3 text-center" style="font-family:'Roboto', sans-serif ;">{{categoria.nombre}}</h3>
-   
-      </div>
     </div>
     {% endfor %}
   </div> 

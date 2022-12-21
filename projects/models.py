@@ -1,6 +1,6 @@
 from django.db import models
-# Para los usuarios de django
 from django.contrib.auth.models import AbstractUser
+
 
 
 
@@ -39,7 +39,7 @@ class Categoria(models.Model):
     TIPO = [
         ('Hospedaje y Hosterias','Hospedaje y Hosterias'),
         ('Gastronomia','Gastronomia'),
-        ('Servicios y Spots Turisticos','Servicios y Spots Turisticos'),
+        ('Servicios','Servicios'),
         ('Productos ','Productos'),
     ]
     nombre = models.CharField(verbose_name="Nombre de la Categoría", max_length=100,choices=TIPO,null=True, blank=True)
@@ -66,7 +66,7 @@ class Producto(models.Model):
 class Emprendimiento(models.Model):
 
    
-    tipo_emprendimiento =models.ForeignKey(Categoria,on_delete=models.CASCADE)
+    tipo_emprendimiento =models.ManyToManyField(Categoria)
     nombre_emprendimiento = models.CharField(verbose_name="Nombre del Emprendimiento", max_length=200)
     direccion = models.CharField(verbose_name="Dirección", max_length=200)
     telefono = models.CharField(verbose_name="Teléfono", max_length=13)
@@ -81,7 +81,7 @@ class Emprendimiento(models.Model):
     facebook=models.URLField(verbose_name="Facebook", null=True, blank=True)
     twitter=models.URLField(verbose_name="Twitter", null=True, blank=True)
     producto=models.ManyToManyField(Producto,blank=True,null=True)
-
+    
     
    
 
@@ -108,7 +108,7 @@ class Emprendedor(Persona):
         verbose_name_plural = "Emprendedores(personas)"
 
     def __str__(self):
-        return self.nombre + " - " + self.emprendimientos.nombre_emprendimiento
+        return  self.nombre
 
 # ---------------------------------------------------------------------------------------------------------------------------------------
 
