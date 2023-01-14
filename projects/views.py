@@ -5,6 +5,7 @@ from django.views import View
 from .models import Emprendimiento, Categoria, Emprendedor, Score, Video_imagen, Producto, Reserva2, Compra
 from projects import views
 from .forms import *
+from .forms2 import *
 from django.http import HttpResponseRedirect
 # Create your views here.
 
@@ -16,7 +17,10 @@ from django.http import HttpResponseRedirect
 def index(request):
     categorias = Categoria.objects.all()
     imagenes = Video_imagen.objects.all().order_by('id')
-    return render(request, 'presentacion/index.html', {'categorias': categorias, 'imagenes': imagenes})
+    favoritos= emprendimientos = Emprendimiento.objects.all()
+    form= ScoreFormulario(request.POST or None)
+    print(form)
+    return render(request, 'presentacion/index.html', {'categorias': categorias, 'imagenes': imagenes,'favoritos': favoritos,'form':form})
 
 
 def lista_emprendimiento(request):
@@ -39,6 +43,9 @@ def lista_emprendimiento(request):
 def ver_por_categoria(request, id):
     emprendimientos = Emprendimiento.objects.all().filter(tipo_emprendimiento=id)
     return render(request, 'Categoria/categorias.html', {'emprendimientos': emprendimientos})
+
+
+
 
 
 def ver_emprendimiento(request, id):

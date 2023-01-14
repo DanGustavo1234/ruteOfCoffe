@@ -72,10 +72,28 @@
   </div> 
 
     <br>
+
+    <div class="card-group">
+      {% for emprende in favoritos %}
+      <div class="card text-center">
+        <a href="/emprendimiento/{{emprende.id}}">
+          <img src="{{emprende.foto.url}}" class="text-center" style="width: 185px; height: 185px; border-radius: 10px;" >
+          <div class="card-body">
+            <h3 class="card-title h3 text-center" style="font-family:'Roboto', sans-serif ; font-size:medium;color: black;">{{emprende.nombre_emprendimiento}}</h3>
+            {% csrf_token %}   
+            {{ form.as_p }} 
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div> 
+
+    <div>
+     
+    </div>
+
+    <br>
  
 </section>
-
-
-
 
 {% endblock %}
