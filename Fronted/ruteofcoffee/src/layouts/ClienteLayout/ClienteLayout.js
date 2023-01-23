@@ -5,7 +5,6 @@ import './ClienteLayout.scss';
     const {children} = props;
     return (
         <div>
-            <h1>Cliente desarrollada para el cliente</h1>
             {children}
         </div>
     );
