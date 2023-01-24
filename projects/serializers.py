@@ -18,47 +18,47 @@ class EmprendimientoSerializers(serializers.ModelSerializer):
 class EmprendedorSerializers(serializers.ModelSerializer):
     class Meta:
         model = Emprendedor
-        fields = ['id','nombre','apellido','email','telefono','direccion','fecha_creacion','fecha_modificacion','emprendimiento']
+        fields = '__all__'
         read_only_fields = ('created_at', )
 
 class ScoreSerializers(serializers.ModelSerializer):
     class Meta:
         model = Score
-        fields = ['id','puntaje','fecha_creacion','fecha_modificacion','emprendimiento']
+        fields = '__all__'
         read_only_fields = ('created_at', )
 
 class Video_imagenSerializers(serializers.ModelSerializer):
     class Meta:
         model = Video_imagen
-        fields = ['id','url','fecha_creacion','fecha_modificacion','emprendimiento']
+        fields ='__all__'
         read_only_fields = ('created_at', )
 
 class ProductoSerializers(serializers.ModelSerializer):
     class Meta:
         model = Producto
-        fields = ['id','nombre','descripcion','precio','fecha_creacion','fecha_modificacion','emprendimiento']
+        fields = '__all__'
         read_only_fields = ('created_at', )
 
 class Reserva2Serializers(serializers.ModelSerializer):
     class Meta:
         model = Reserva2
-        fields = ['id','fecha','fecha_creacion','fecha_modificacion','producto','emprendimiento']
+        fields = '__all__'
         read_only_fields = ('created_at', )
 
 class CompraSerializers(serializers.ModelSerializer):
     class Meta:
         model = Compra
-        fields = ['id','fecha','fecha_creacion','fecha_modificacion','producto','emprendimiento']
+        fields = '__all__'
         read_only_fields = ('created_at', )
 
 class CategoriaSerializers(serializers.ModelSerializer):
     class Meta:
         model=Categoria
-        fields=['nombre']
+        fields='__all__'
         read_only_fields=('created_at',)
 
 class Reserva2Serializers(serializers.ModelSerializer):
     class Meta:
         model=Reserva2
-        fields=['fecha','nombre_producto','cantidad']
+        fields='__all__'
         read_only_fields=('created_at',)

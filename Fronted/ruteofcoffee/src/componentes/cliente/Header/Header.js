@@ -7,6 +7,7 @@ import {faBarsStaggered} from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Dropdown,DropdownItem,DropdownMenu,DropdownToggle } from "reactstrap";
 import { useState } from "react";
+import imgsincolor from '../../../assets/img/imgsincolor.png'
 
 export  function Header() {
   const[ dropdown,setDropdown]=useState(false);
@@ -27,16 +28,16 @@ export  function Header() {
 
 
         <nav class="menu">
-        <Link class="logo" to="/">UIDE</Link>
+        <Link class="logo" to="/"><img src={imgsincolor} className="imagen" /></Link>
               <ul class="menu_items">
                 <li class="active">
                 <NavLink to="/" className="active" aria-current="page">Home</NavLink>
                 </li>
                 <li class="active">
-                <NavLink to="/" className="active" aria-current="page">Emprendimientos </NavLink>
+                <NavLink to="/emprendimientos" className="active" aria-current="page">Emprendimientos</NavLink>
                </li>
                <li class="active">
-               <NavLink to="/" className="active" aria-current="page">Emprendedores</NavLink>
+               <NavLink to="/emprendedores" className="active" aria-current="page">Emprendedores</NavLink>
                </li>
                {/* <li class="active">
                <NavLink to="/Salasdelectura" className="active" aria-current="page">Salas de lectura</NavLink>

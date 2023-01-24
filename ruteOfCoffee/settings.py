@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects',
     'rest_framework',
+    'corsheaders',
    
 ]
 
@@ -64,6 +65,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'ruteOfCoffee.urls'
@@ -150,3 +154,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # esta es la configuaracion para el user 
 AUTH_USER_MODEL = 'projects.Persona'
 
+CORS_ALLOWED_ORIGINS=[
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+CORS_ORIGIN_ALLOW_ALL=True

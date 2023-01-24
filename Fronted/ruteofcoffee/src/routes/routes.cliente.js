@@ -1,5 +1,5 @@
 import{ClienteLayout } from '../layouts';
-import{Home, Emprendimientos } from '../Pages/Cliente';
+import{Home, Emprendimientos,Emprendedores } from '../Pages/Cliente';
 
 
 const routesCliente = [
@@ -12,6 +12,11 @@ const routesCliente = [
         path: "/emprendimientos",
         layout: ClienteLayout,
         component: Emprendimientos,
+    },
+    {
+        path: "/emprendedores",
+        layout: ClienteLayout,
+        component: Emprendedores,
     },
 ];
 

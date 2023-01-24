@@ -1,7 +1,7 @@
 .navbar{
     margin: 10px;
     background-color: #262626;
-    border-radius: 5px;
+    border-radius: 25px;
 }
 .logo{
     margin-left: 20px;
@@ -15,12 +15,14 @@
     color:#262626 !important;
   
 }
+
+
 .menu{
-    background-color:#57bd9e ;
+    background: linear-gradient(to right, #73A9AD 0%, #90C8AC 100%);
     height: 65px;
     display: flex;
     margin: 10px;
-    border-radius: 6px;
+    border-radius: 15px;
     justify-content: space-between;
     align-items: center;
 }
@@ -42,8 +44,10 @@
     color: #262626; 
 }
 
+
+
 .menu_items li:hover, li:active{
-    background-color: #e1e8ef;
+    background-color: #57bd9e ;
     transition: -4s;
     border-radius: 2px;
     
@@ -51,14 +55,15 @@
 
 .btn_menu{
     margin-right: 20px;
+  
     cursor:pointer;
     display:none;
 }
 
 .boton{
-    background-color: #262626 !important;
-    border-color: #262626 !important;
-    color: #e1e8ef;
+    background-color: #57bd9e  !important;
+    border-color: #57bd9e  !important;
+    color: #262626;
     border-radius: 6px;
     height: 30px;
 }
@@ -76,6 +81,7 @@ ul.show{
     }
     .menu_items{
         font-size: 20px;
+        border-radius: 2px;
     }  
 }
 
@@ -129,4 +135,9 @@ ul.show{
         height: calc(100% - 65px);
     }
     
+}
+
+.imagen{
+    width: 115px !important;
+    height: 60px !important;
 }
