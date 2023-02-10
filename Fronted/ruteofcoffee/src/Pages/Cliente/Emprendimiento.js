@@ -2,6 +2,7 @@ import React from 'react'
 import { Emprendimiento } from "../../componentes/cliente/Emprendimiento";
 import { Footer} from "../../componentes/cliente/Footer";
 import {Header} from "../../componentes/cliente/Header";
+import { AgregarEmprendimiento} from '../../componentes/cliente/AgregarEmprendimiento';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -22,7 +23,7 @@ import Col from 'react-bootstrap/Col';
     
           </Row>
           <Row>
-            <Col>Favoritos</Col>
+            <Col><AgregarEmprendimiento/> </Col>
     
           </Row>
         </Container>

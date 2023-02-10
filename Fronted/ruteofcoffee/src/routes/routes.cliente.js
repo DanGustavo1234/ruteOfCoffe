@@ -1,5 +1,6 @@
 import{ClienteLayout } from '../layouts';
-import{Home, Emprendimientos,Emprendedores } from '../Pages/Cliente';
+import{Home, Emprendimientos,Emprendedores,Producto} from '../Pages/Cliente/';
+
 
 
 const routesCliente = [
@@ -18,6 +19,14 @@ const routesCliente = [
         layout: ClienteLayout,
         component: Emprendedores,
     },
+    {
+        path: "/producto",
+        layout: ClienteLayout,
+        component: Producto,
+    },
+  
+
+  
 ];
 
 export default routesCliente;

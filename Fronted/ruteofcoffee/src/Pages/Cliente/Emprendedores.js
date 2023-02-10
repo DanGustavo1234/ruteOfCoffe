@@ -6,6 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
+
+
+
 export  function Emprendedores() {
   return (
     <div>  <header>
@@ -22,7 +26,7 @@ export  function Emprendedores() {
 
       </Row>
       <Row>
-        <Col>Favoritos</Col>
+        <Col>Hola</Col>
 
       </Row>
     </Container>

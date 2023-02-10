@@ -9,6 +9,7 @@ import { NavLink} from "react-router-dom";
 export function Emprendimiento() {
 
     const [data, setData] = useState([]);
+    
 
     useEffect(() => {
       fetch("http://127.0.0.1:8000/api/emprendimiento/")
@@ -32,13 +33,13 @@ export function Emprendimiento() {
                 className="img_enprendimiento"
               ></img>
 
-              <NavLink to="/" aria-current="page"><button class="button-38" role="button">{item.nombre_emprendimiento}</button></NavLink>
+              <NavLink to="/producto" aria-current="page"><button class="button-38" role="button">{item.nombre_emprendimiento}</button></NavLink>
               
 
             <div className='row'>
 
             <ul className='iconos_rs'>
-            <NavLink to="/" aria-current="page"><ion-icon name="logo-facebook"></ion-icon></NavLink>
+            <NavLink to="/" ul={false} aria-current="page"><ion-icon name="logo-facebook"></ion-icon></NavLink>
             <NavLink to="/" aria-current="page"><ion-icon name="logo-instagram"></ion-icon></NavLink>
             <NavLink to="/" aria-current="page"><ion-icon name="logo-twitter"></ion-icon></NavLink>
             <NavLink to="/" aria-current="page"><ion-icon name="logo-tiktok"></ion-icon></NavLink>
